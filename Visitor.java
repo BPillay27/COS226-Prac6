@@ -14,8 +14,24 @@ class Visitor implements Runnable {
 
     @Override
     public void run() {
-        //TODO: Complete function
+        // done
+        seats.lock(this);
+        try {
+            synchronized (boardingLog) {
+                boardingLog.add(id);
+            }
+
+            try {
+                int time = ThreadLocalRandom.current().nextInt(100, 300);
+                Thread.sleep(time);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        } finally {
+            seats.unlock();
+        }
     }
+
     public String toString() {
         return "Visitor " + id;
     }
