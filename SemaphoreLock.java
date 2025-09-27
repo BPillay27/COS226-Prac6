@@ -14,7 +14,7 @@ public class SemaphoreLock {
     public SemaphoreLock(int capacity) {
         // done
         if (capacity <= 0) {
-            throw new IllegalArgumentException("Capacity must be >=0");
+            throw new IllegalArgumentException("Capacity must be >0");
         }
 
         this.capacity = capacity;

@@ -17,16 +17,18 @@ class Visitor implements Runnable {
         // done
         seats.lock(this);
         try {
+            System.out.println("Visitor " + id + " arrives at the ride.");
             synchronized (boardingLog) {
                 boardingLog.add(id);
             }
 
             try {
-                int time = ThreadLocalRandom.current().nextInt(100, 300);
-                Thread.sleep(time);
+                System.out.println("Visitor " + id + " boards the ride!");
+                Thread.sleep(ThreadLocalRandom.current().nextInt(100, 300));
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
+            System.out.println("Visitor " + id + " leaves the ride.");
         } finally {
             seats.unlock();
         }
